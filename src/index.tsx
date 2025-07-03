@@ -1,9 +1,9 @@
-import { root } from '@lynx-js/react'
+import { root } from '@lynx-js/react';
 
-import { App } from './App.jsx'
+import { App } from './App.jsx';
 
-root.render(<App />)
+root.render(<App />);
 
 if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
+    import.meta.webpackHot.accept();
 }

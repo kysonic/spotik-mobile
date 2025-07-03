@@ -6,10 +6,12 @@
     "build": "rspeedy build",
     "dev": "rspeedy dev",
     "preview": "rspeedy preview",
+    "pretty": "prettier ./src",
     "test": "vitest run"
   },
   "dependencies": {
-    "@lynx-js/react": "^0.110.1"
+    "@lynx-js/react": "^0.110.1",
+    "prettier": "^3.6.2"
   },
   "devDependencies": {
     "@lynx-js/qrcode-rsbuild-plugin": "^0.4.0",
