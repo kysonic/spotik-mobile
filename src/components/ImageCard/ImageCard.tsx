@@ -1,4 +1,5 @@
 import type { Picture } from '../../entities/Picture.js';
+import LikeIcon from '../LikeIcon/LikeIcon.js';
 import './ImageCard.css';
 
 export type ImageCardProps = { picture: Picture };
@@ -11,6 +12,7 @@ export default function ImageCard({ picture }: ImageCardProps) {
                 style={{ width: '100%', aspectRatio: picture.width / picture.height }}
                 src={picture.src}
             />
+            <LikeIcon />
         </view>
     );
 }

@@ -1,0 +1,14 @@
+.gallery-wrapper {
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+.list {
+    width: 100vw;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: calc(100% - 48px);
+    list-main-axis-gap: 10px;
+    list-cross-axis-gap: 10px;
+}
