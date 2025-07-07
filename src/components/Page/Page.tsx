@@ -4,7 +4,13 @@ import favoriteIcon from '../../assets/whiteHeart.png';
 import SafeArea from '../SafeArea/SafeArea.js';
 import './Page.css';
 
-export function Page({ children, title, style }: { children: ReactNode; title?: string; style?: CSSProperties }) {
+export interface PageProps { 
+  children: ReactNode; 
+  title?: string; 
+  style?: CSSProperties
+}
+
+export function Page({ children, title, style }: PageProps) {
     return (
         <SafeArea style={style}>
             <view className="page-container">
