@@ -1,19 +1,29 @@
 import { runOnBackground, runOnMainThread, useMainThreadRef, useRef } from '@lynx-js/react';
 import type { MainThread } from '@lynx-js/types';
+import { useAnimate } from '../../utils/useAnimate.js';
 
 export function useOffset({
     onOffsetUpdate,
     itemWidth,
     onIndexUpdate,
+    duration,
 }: {
     onOffsetUpdate: (offset: number) => void;
     onIndexUpdate: (index: number) => void;
     itemWidth: number;
+    duration: number;
 }) {
     const touchStartXRef = useMainThreadRef<number>(0);
     const touchStartCurrentOffsetRef = useMainThreadRef<number>(0);
     const currentOffsetRef = useMainThreadRef<number>(0);
     const currentIndexRef = useMainThreadRef<number>(0);
+    const { animate, cancel: cancelAnimate } = useAnimate();
+
+    function calcNearestPage(offset: number) {
+        'main thread';
+        const nearestPage = Math.round(offset / itemWidth);
+        return nearestPage * itemWidth;
+    }
 
     function updateOffset(offset: number) {
         'main thread';
@@ -31,6 +41,7 @@ export function useOffset({
         'main thread';
         touchStartXRef.current = e.touches[0].clientX;
         touchStartCurrentOffsetRef.current = currentOffsetRef.current;
+        cancelAnimate();
     }
 
     function handleTouchMove(e: MainThread.TouchEvent) {
@@ -43,6 +54,12 @@ export function useOffset({
         'main thread';
         touchStartXRef.current = 0;
         touchStartCurrentOffsetRef.current = 0;
+        animate({
+            from: currentOffsetRef.current,
+            to: calcNearestPage(currentOffsetRef.current),
+            onUpdate: updateOffset,
+            duration,
+        });
     }
 
     function updateIndex(index: number) {

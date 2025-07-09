@@ -18,6 +18,7 @@ export function Swiper({
         onOffsetUpdate: updateSwiperStyle,
         onIndexUpdate: setCurrent,
         itemWidth,
+        duration: 300,
     });
 
     return (
