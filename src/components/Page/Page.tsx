@@ -11,6 +11,9 @@ export interface PageProps {
 }
 
 export function Page({ children, title, style }: PageProps) {
+    const onOrderTap = () => {
+        console.log('Debug!');
+    }
     return (
         <SafeArea style={style}>
             <view className="page-container">
@@ -32,7 +35,7 @@ export function Page({ children, title, style }: PageProps) {
                         </view>
                     </view>
                 </view>
-                <view className="order-button">
+                <view className="order-button" bindtap={onOrderTap}>
                     <text className="order-text">Order Now</text>
                 </view>
             </view>
